@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Apple-calculator</title>
+</head>
+
+<body>
+    
+<style>
+
+    .bkgd{
+        width: 428px;
+        height: 521px;
+        background-color: #C3C3C3;
+        background: linear-gradient(to bottom #AEAEAE,#DBDBDBS);
+    	
+    }    
+    
+    button{
+
+        }
+    button.most{  
+	width: 93px;
+        height: 55px;
+        
+        margin:4.5px 0px;
+        text-align: center;
+        border-radius: 10px;
+        border-style: outset;
+        border-color: #696969;
+        border-width: 1PX;
+        border-bottom: 1px outset #777777;
+        font-family: Lucida Console;
+        font-size: 30px;
+        background-color: ;
+        background: linear-gradient(#F0F0F0, #EDEDED, #EAEAEA,
+        #E7E7E7, #DEDEDE, #DBDBDB, #D8D8D8, #D7D7D7, #D6D6D6,
+        #D5D5D5, #D4D4D4, #D3D3D3, #D3D3D3, #D3D3D3, #D3D3D3,
+        #D3D3D3, #D3D3D3, #D3D3D3, #D3D3D3, #D3D3D3, #D3D3D3,
+        #D3D3D3, #D3D3D3, #D3D3D3, #C9C9C9, #BABABA, #A6A6A6, #909090, #777777);
+    	box-shadow: 2px 4px #EAEAEA INSET;
+        box-shadow: 0px 2px 2px #EAEAEA;
+        color: #3E3E3E;
+	}
+    button.zro{
+        width: 194px;
+        height: 55px;
+        
+        margin:4.5px 0px;
+        text-align: center;
+        border-radius: 10px;
+        border-style: outset;
+        border-color: #696969;
+        border-width: 1PX;
+        border-bottom: 1px outset #777777;
+        font-family: Lucida Console;
+        font-size: 30px;
+        background-color: ;
+        background: linear-gradient(#F0F0F0, #EDEDED, #EAEAEA,
+        #E7E7E7, #DEDEDE, #DBDBDB, #D8D8D8, #D7D7D7, #D6D6D6,
+        #D5D5D5, #D4D4D4, #D3D3D3, #D3D3D3, #D3D3D3, #D3D3D3,
+        #D3D3D3, #D3D3D3, #D3D3D3, #D3D3D3, #D3D3D3, #D3D3D3,
+        #D3D3D3, #D3D3D3, #D3D3D3, #C9C9C9, #BABABA, #A6A6A6, #909090, #777777);
+    	box-shadow: 2px 4px #EAEAEA INSET;
+        box-shadow: 0px 2px 2px #EAEAEA;
+        color: #3E3E3E;
+    }
+    button.eql{        
+	width: 94px;
+        height: 120px;
+        padding-top: 75px;
+        
+        margin:4.5px 0px;
+        text-align: center;
+        border-radius: 10px;
+        border-style: outset;
+        border-color: #696969;
+        border-width: 1PX;
+        border-bottom: 1px outset #777777;
+        font-family: Lucida Console;
+        font-size: 30px;
+        background-color: ;
+        background: linear-gradient(#F0F0F0, #EDEDED, #EAEAEA,
+        #E7E7E7, #DEDEDE, #DBDBDB, #D8D8D8, #D7D7D7, #D6D6D6,
+        #D5D5D5, #D4D4D4, #D3D3D3, #D3D3D3, #D3D3D3, #D3D3D3,
+        #D3D3D3, #D3D3D3, #D3D3D3, #D3D3D3, #D3D3D3, #D3D3D3,
+        #D3D3D3, #D3D3D3, #D3D3D3, #C9C9C9, #BABABA, #A6A6A6, #909090, #777777);
+    	box-shadow: 2px 4px #EAEAEA INSET, 0px 2px 2px #EAEAEA;
+        color: #3E3E3E;
+        }
+    
+    button.screen{
+        margin: 8px 20px;
+        padding-bottom: 32px;
+        width: 385px;
+        height: 95px;
+        margin-bottom: 16.5px;
+        background-color: #F0FBC8;
+        border-color: #808080 #B5B5B5 #AFB592 #B9B9B9;
+        border-bottom: 2PX, solid;
+        border-top-width: 4px;
+        border-left-width: 4px;
+        border-right-width: 4px; 
+        box-shadow: 1px 5px 3px #AFB592 inset, 0px 4px #EDEDED;
+        font-size: 28px;
+        font-family: Lucida Console;
+        font-weight: 200;
+        text-indent: 130px;
+       
+        border-style: solid;
+        border-radius: 15px;
+    
+    }
+
+    .left{
+         float:left;
+         margin-right:8px;    
+    }
+
+    .middle{
+         float:left;
+    }
+    
+    .right{
+         float:left;
+         margin-left: 8px;
+    }    
+    
+</style>
+    
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    
+    <script>
+	var i=0, k=0, err=0;
+	//var leading=0;
+	    function send(valueNum){
+		do{
+		    var num = document.getElementById(valueNum).value;
+		    if(valueNum != 15 && valueNum != 16 && valueNum != 17 && k%2 == 0){
+			document.getElementById("output").innerHTML += num;
+		    }
+		    else if (valueNum != 15 && valueNum != 16 && valueNum != 17 && k%2 == 1){
+			$('#output').html('');
+			document.getElementById("output").innerHTML=num;
+			k=k+1;
+		    }
+		    else if (valueNum == 15){
+			k = k+1;
+			calculate();
+		    }
+		    else if(valueNum == 16){
+			$('#output').html('');
+		    }
+		    else if(valueNum == 17){
+			i=i+1;
+			minussign=document.getElementById("output").innerHTML[document.getElementById("output").innerHTML.length-1];
+			if (i%2!=0) {
+			minussign1=-1*minussign;
+			document.getElementById("output").innerHTML[document.getElementById("output").innerHTML.length-1]=minussign1;
+			document.getElementById("output").innerHTML=document.getElementById("output").innerHTML.substr(0,document.getElementById("output").innerHTML.length-1)+minussign1;
+			//leading =0;
+			}
+			else{
+			//leading=1;
+			}
+		    }
+		}while (k != k);
+	    }
+	    function calculate() {
+		cal = document.getElementById("output").innerHTML;
+		calsplit = cal.split(" ");
+		/*if (leading==0) {
+		    cal_new=calsplit.pop();
+		    cal_new=(-1)*cal_new;
+		    calsplit.push(parseInt(cal_new));
+		}*/
+		err=0;
+		try {
+		    val = evaluate(calsplit);//val = evaluate(tokens)
+		    if (calsplit.length!=0 ) {
+			err=1;
+		    }//if tokens isn¡¯t empty, throw an error ¡°ill-?©\formed e
+		    $('#output').html(val);//show val in the output field of your calculator
+		    
+		    if (err==1) throw "ill-formed expression!";
+		    if (err==2) throw "error!";
+		    if (err==3) throw "missing operand!";
+		    if (err==4) throw "unrecognized operator!";
+		}
+		catch (err) {
+		    $('#output').html(err);// error message will be printed as the answer
+		    
+		}
+	    }
+	    
+	    function read_operand(arrayOfTokens) {
+		num = arrayOfTokens[0];//num = first element of the array
+		arrayOfTokens.shift();
+		integ = parseInt(num);//use builtin function parseInt() to convert num to an integer
+		if(isNaN(integ)) {
+		err=2;
+		}//if the result is NaN (not a number) throw an error
+		else{
+		return num;
+		}//return the result
+	    }
+	    
+	    function evaluate (arrayOfTokens)
+	    {
+		if (arrayOfTokens.length==0){
+		    err=3;
+		}//if array is empty, throw an error ¡°missing operand¡±
+		value = read_operand(arrayOfTokens);//value = read_operand(array of tokens)
+		while (arrayOfTokens.length!=0)//while (array is not empty)
+		{
+		operator = arrayOfTokens[0];//operator = next token, remove from array
+		    if (operator != "+" && operator != '-' && operator.charCodeAt(0) != 215 && operator.charCodeAt(0) != 247 && operator.length != 0){
+			err=4;
+		    }//if operator isn¡¯t, throw an error ¡°unrecognized operator¡±
+
+		    if (arrayOfTokens.length==0){
+			err=3;
+		    }//if array is empty, throw an error ¡°missing operand¡±
+		    
+		    arrayOfTokens.shift();
+		
+		    if (operator == '+'){
+			temp = read_term(arrayOfTokens);
+			value = parseFloat(value) + parseFloat(temp);
+		    }
+		    else if (operator == '-'){
+			temp = read_term(arrayOfTokens);
+			value = parseFloat(value) - parseFloat(temp);
+		    }		    
+		    else if (operator.charCodeAt(0) == 215){
+			temp = read_operand(arrayOfTokens);//temp = read_operand(array of tokens)
+			value = parseFloat(value) * parseFloat(temp);
+		    }
+		    else if(operator.charCodeAt(0) ==  247){
+			temp = read_operand(arrayOfTokens);//temp = read_operand(array of tokens)
+			value = parseFloat(value) / parseFloat(temp);
+		    }//value = value ¡°operator¡± temp // perform requested operation
+		}
+		return value;//return value
+	    }
+	    
+	    function read_term(arrayOfTokens1)
+	    {
+		value1 = read_operand(arrayOfTokens1);//value = read_operand(array of tokens)
+		while (arrayOfTokens1.length!=0){
+		    operator1 = arrayOfTokens1[0];//operator = next token, remove from array
+		    if (operator1 == '+' || operator1 == '-'){
+			return value1;
+		    }
+		    else{
+			arrayOfTokens1.shift();
+			if (operator1.charCodeAt(0) == 215){
+			temp1 = read_operand(arrayOfTokens1);//temp = read_operand(array of tokens)
+			value1 = parseFloat(value1) * parseFloat(temp1);
+			//return value1;
+			}
+			else if(operator1.charCodeAt(0) ==  247){
+			temp1 = read_operand(arrayOfTokens1);//temp = read_operand(array of tokens)
+			value1 = parseFloat(value1) / parseFloat(temp1);
+			//return value1;
+			}//value = value ¡°operator¡± temp // perform requested operation
+		    }
+		}
+		return value1;
+	    }
+	    
+	$(document).ready(function() {
+		
+	    $( "#0" ).bind( "click", function() {
+		send(0);
+	    });
+	    $( "#1" ).bind( "click", function() {
+		send(1);
+	    });
+	    $( "#2" ).bind( "click", function() {
+		send(2);
+	    });
+	    $( "#3" ).bind( "click", function() {
+		send(3);
+	    });
+	    $( "#4" ).bind( "click", function() {
+		send(4);
+	    });
+	    $( "#5" ).bind( "click", function() {
+		send(5);
+	    });
+	    $( "#6" ).bind( "click", function() {
+		send(6);
+	    });
+	    $( "#7" ).bind( "click", function() {
+		send(7);
+	    });
+	    $( "#8" ).bind( "click", function() {
+		send(8);
+	    });
+	    $( "#9" ).bind( "click", function() {
+		send(9);
+	    });
+	    $( "#10" ).bind( "click", function() {
+		send(10);
+	    });
+	    $( "#11" ).bind( "click", function() {
+		send(11);//add
+	    });
+	    $( "#12" ).bind( "click", function() {
+		send(12);//sub
+	    });
+	    $( "#13" ).bind( "click", function() {
+		send(13);//mul
+	    });
+	    $( "#14" ).bind( "click", function() {
+		send(14);//div
+	    });
+	    $( "#15" ).bind( "click", function() {
+		send(15);//eql
+	    });
+	    $( "#16" ).bind( "click", function() {
+		send(16);//C
+	    });
+	    $( "#17" ).bind( "click", function() {
+		send(17);//po/neg
+	    });
+	});
+    </script>
+    
+    <div class='bkgd'>
+        <button class='screen'>
+            <span id='output'></span>
+	</button>
+        <div class='row' style="margin-left: 15px">
+	    
+	<button class='most'><b>MC</b></button>
+	<button class='most'><b>M+</b></button>
+	<button class='most'><b>M-</b></button>
+        <button class='most'><b>MR</b></button>
+        </div>
+        
+        <div class='row' style="margin-left: 15px">
+        <button class='most' id='16'><b>C</b></button>
+        <button class='most' id='17' value=' &#177 '><b>&#177</b></button>
+        <button class='most' id='14' value=' &#247 '><b>&#247</b></button>
+        <button class='most' id='13' value=' &#215 '><b>&#215</b></button>
+        </div>
+        
+        <div class='row' style="margin-left: 15px">
+        <button class='most' id='7' value='7'><b>7</b></button>
+        <button class='most' id='8' value='8'><b>8</b></button>
+        <button class='most' id='9' value='9'><b>9</b></button>
+        <button class='most' id='12' value=' - '><b>-</b></button>
+        </div>
+        
+        <div class='row' style="margin-left: 15px">
+        <button class='most' id='4' value='4'><b>4</b></button>
+        <button class='most' id='5' value='5'><b>5</b></button>
+        <button class='most' id='6' value='6'><b>6</b></button>
+        <button class='most' id='11' value=' + '><b>+</b></button>
+        </div>
+        
+        <div class='row' style="margin-left: 15px">
+            <div class='left'>
+                    <button class='most' id='1' value='1'><b>1</b></button>
+                    <button class='most' id='2' value='2'><b>2</b></button>
+                    <div></div>
+                    <button class='zro' id='0' value='0'><b>0</b></button>
+             </div>
+            <div class='middle'>
+                    <button class='most' id='3' value='3'><b>3</b></button>
+                    <div></div>
+                    <button class='most' padding-top=95px id='10' value='.'>.</button>
+            </div>
+            <div class='right'>
+                    <button class='eql' id='15' value='='><b>=</b></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
